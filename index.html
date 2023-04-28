@@ -24,7 +24,7 @@
             <h2 class="mt-1 ms-2 text-black"> Weather forcast <i class="fa-solid fa-cloud-sun-rain"></i></h2>
             <div class="text-center mb-5 " >
                 
-                <h4 class="text-center text-white " style="margin-top: 30%;"> The On<span style="color: black;">ly  Weather</span> Forcast You needed</h4>
+                <h4 class="text-center  " style="margin-top: 30%; color: rgb(161, 159, 159); font-size: xx-large;"  > The Only Weather Forcast You needed</h4>
                 <input type="text" class="form-control w-50 mx-auto text-white mt-4   " id="result" placeholder="Place"
                     style="margin-top: 10px;background-color: rgba(176, 177, 179, 0.423); border: none;">
                 <button class="btn btn-success mt-3 " type="button" " onclick="searchWeather()" > Search</button>
@@ -45,6 +45,7 @@
     
 </body>
 <script>
+  
     function searchWeather(){
         pname=result.value
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${pname}&appid=b41ec3be35c7dac8aabbc21ba253137a`).then(data=>data.json()).then(data=>displayData(data))
@@ -58,7 +59,7 @@ condition=wdata.weather[0].description
 feeltemp=Math.round(wdata.main.feels_like-272.15)
 humidity=wdata.main.humidity
 pressure=wdata.main.pressure
-windspeed=wdata.wind.speed*3.5
+windspeed=Math.round(wdata.wind.speed*3.5)
 mintemp=Math.round(wdata.main.temp_min-272)
 maxtemp=Math.round(wdata.main.temp_max-272)
 
