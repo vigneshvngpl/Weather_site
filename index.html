@@ -25,9 +25,14 @@
             <div class="text-center mb-5 " >
                 
                 <h4 class="text-center  " style="margin-top: 30%; color: rgb(161, 159, 159); font-size: xx-large;"  > The Only Weather Forcast You needed</h4>
-                <input type="text" class="form-control w-50 mx-auto text-white mt-4   " id="result" placeholder="Place"
+                
+                
+                  <input type="text" class="form-control w-50 mx-auto text-white mt-4   " id="result" placeholder="Place"
                     style="margin-top: 10px;background-color: rgba(176, 177, 179, 0.423); border: none;">
+                   
+                
                 <button class="btn btn-success mt-3 " type="button" " onclick="searchWeather()" > Search</button>
+                <button type="button" class="btn btn-dark mt-3 " onclick="autolocateInfo()" style="color: rgb(255, 255, 255)" ><i class="fa-solid fa-location-crosshairs fa-fade fa-1.5x" style="color: rgb(247, 245, 245);"></i>  Current Location</button>
         </div>
         </div>
         <div class=" col-lg-6 col-md-12 col-sm-12  mx-auto " id="today" style="margin-top: 5%; height: 550px; " >
@@ -41,6 +46,7 @@
         </div>
         
         </div>
+        
     </div>
     
 </body>
@@ -50,7 +56,22 @@
         pname=result.value
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${pname}&appid=b41ec3be35c7dac8aabbc21ba253137a`).then(data=>data.json()).then(data=>displayData(data))
     }
+    function autolocateInfo() {
 
+successCallback = (position) => {
+    lat = position.coords.latitude;
+    lon = position.coords.longitude;
+
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lon=${lon}&lat=${lat}&appid=b41ec3be35c7dac8aabbc21ba253137a`).then(data=>data.json()).then(data=>displayData(data))
+    
+    
+
+
+};
+
+navigator.geolocation.getCurrentPosition(successCallback);
+
+}
     function displayData(wdata){
 
 place=wdata.name
