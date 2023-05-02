@@ -40,13 +40,11 @@
             <div class="row mt-5 mx-auto mt-5   " style=" background-color: rgba(197, 179, 179, 0.618); border-radius: 15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); width: 90%; margin-top: 50px;">
 
             <div class="col-lg-6 col-md-6 col-sm-12 " id="empdiv1">
-
+                
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 " style="border-left: 1px solid black;  " id="empdiv2" ></div>
         </div>
-        
         </div>
-        
     </div>
     
 </body>
@@ -83,11 +81,13 @@ pressure=wdata.main.pressure
 windspeed=Math.round(wdata.wind.speed*3.5)
 mintemp=Math.round(wdata.main.temp_min-272)
 maxtemp=Math.round(wdata.main.temp_max-272)
+main1=wdata.weather[0].main
 
 
 
 empdiv1.innerHTML=`
 <h1 class="text-center mt-5 "> ${place}</H1>
+    <div id="mai" class="mx-auto text-center w-75"></div>
     <h4 class="text-center mt-2">${condition}</h4>
     <h6 class="text-center mt-5 pt-3 "><i class="fa-solid fa-temperature-three-quarters"></i> ${temp}℃   <i class="fa-solid fa-wind" style="color: #1e3050;"></i> ${windspeed}Km/H</H6>
 
@@ -106,7 +106,37 @@ empdiv2.innerHTML=`
     
   </ul>
     `
-    
+    if(main1=="Clouds"){
+
+        mai.innerHTML=`
+   
+        <img src="./images/clouds-png-hd-images-cloud-png-cloud-hd-png-1988.png" alt="" style="width: 100%; height: 100px;"> 
+`
+
+    }
+    else if(main1=="Rain"){
+        mai.innerHTML=`
+        <img src="./images/rain.gif" alt="" style="width: 100%; height: 100px;"> 
+        `
+    }
+    else if(main1=="Mist"){
+        mai.innerHTML=`
+        <img src="./images/Mist-Gray-Transparent-Free-PNG.png" alt="" style="width: 100%; height: 100px;"> 
+        `
+    }
+    else if(main1=="Clear"){
+
+        mai.innerHTML=`
+        <img src="./images/sky-clipart-transparent-7.png" alt="" style="width: 100%; height: 100px;">
+        `
+    }
+    else if(main1=="Thunderstorm"){
+
+mai.innerHTML=`
+<img src="./images/lightning-transparent-thunderstorm-8.png" alt="" style="width: 100%; height: 100px;"> 
+
+`
+}
 
 
     }
